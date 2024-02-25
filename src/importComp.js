@@ -15,11 +15,11 @@ const ImportComp = () => {
             reader.onload = (e) => { // Event handler for when file reading is complete
                 const wb = XLSX.read(e.target.result, { type: 'binary' }); // Read file contents and create workbook read all the columsn and rows
                 console.log("WB",wb);
-                const sheets = wb.SheetNames[0]; // Get sheet names from workbook
+                const sheets = wb.SheetNames; // Get sheet names from workbook
                 console.log(sheets,"sheet names")
 
                 if (sheets.length) { // Check if there are any sheets in the workbook
-                    const rows = XLSX.utils.sheet_to_json(wb.Sheets[sheets]); // Convert first sheet to JSON
+                    const rows = XLSX.utils.sheet_to_json(wb.Sheets[sheets[0]]); // Convert first sheet to JSON
                     setData(rows); // Set data state with extracted rows
                     console.log(rows,"rows"); // Log the extracted data
                 }
